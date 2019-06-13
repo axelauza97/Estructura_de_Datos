@@ -5,6 +5,7 @@
  */
 package estructuras;
 
+import ventanas.FrmAlbum;
 import ventanas.FrmLogin;
 
 /**
@@ -18,7 +19,7 @@ public class Estructuras {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        FrmLogin frm = new FrmLogin();
+        FrmAlbum frm = new FrmAlbum();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }
