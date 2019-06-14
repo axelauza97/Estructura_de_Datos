@@ -5,12 +5,17 @@
  */
 package ventanas;
 
+import archivos.Archivo;
+import entidades.Foto;
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
+import java.awt.Image;
 import javax.accessibility.AccessibleRole;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -41,6 +46,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         paneAlbum = new javax.swing.JPanel();
         lblAlbum = new javax.swing.JLabel();
         btnAgregarFoto = new javax.swing.JButton();
+        paneFotos = new javax.swing.JPanel();
         paneNombres = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -51,15 +57,16 @@ public class FrmAlbum extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        txtLugar = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JLabel();
+        txtPersonas = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblAlbum.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblAlbum.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlbum.setText("Album");
 
         btnAgregarFoto.setText("Agregar Foto");
@@ -69,25 +76,47 @@ public class FrmAlbum extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout paneFotosLayout = new javax.swing.GroupLayout(paneFotos);
+        paneFotos.setLayout(paneFotosLayout);
+        paneFotosLayout.setHorizontalGroup(
+            paneFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        paneFotosLayout.setVerticalGroup(
+            paneFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 639, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout paneAlbumLayout = new javax.swing.GroupLayout(paneAlbum);
         paneAlbum.setLayout(paneAlbumLayout);
         paneAlbumLayout.setHorizontalGroup(
             paneAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneAlbumLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAlbum)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
-                .addComponent(btnAgregarFoto)
-                .addGap(25, 25, 25))
+                .addGroup(paneAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(paneAlbumLayout.createSequentialGroup()
+                        .addGap(0, 99, Short.MAX_VALUE)
+                        .addGroup(paneAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneAlbumLayout.createSequentialGroup()
+                                .addComponent(lblAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneAlbumLayout.createSequentialGroup()
+                                .addComponent(btnAgregarFoto)
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneAlbumLayout.createSequentialGroup()
+                        .addComponent(paneFotos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         paneAlbumLayout.setVerticalGroup(
             paneAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneAlbumLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(paneAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAlbum)
-                    .addComponent(btnAgregarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addComponent(lblAlbum)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAgregarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(paneFotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         scAlbum.setViewportView(paneAlbum);
@@ -122,12 +151,6 @@ public class FrmAlbum extends javax.swing.JFrame {
         txtDescripcion.setRows(5);
         jScrollPane2.setViewportView(txtDescripcion);
 
-        jLabel7.setText("jLabel7");
-
-        jLabel8.setText("jLabel8");
-
-        jLabel9.setText("jLabel9");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,10 +174,10 @@ public class FrmAlbum extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtLugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPersonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -183,15 +206,15 @@ public class FrmAlbum extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7))
+                    .addComponent(txtLugar))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel8))
+                    .addComponent(txtFecha))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel9))
+                    .addComponent(txtPersonas))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -240,9 +263,9 @@ public class FrmAlbum extends javax.swing.JFrame {
         });
     }
     private void loadAlbums(){
-        paneNombres.setLayout(new GridLayout(11,1,5,10));
+        paneNombres.setLayout(new GridLayout(0,2,5,10));
         //Numero de Albumnes guardados
-        for(int x=0;x<=10;x++){
+        for(int x=0;x<=20;x++){
             JButton boton=new JButton("Album "+String.valueOf(x));
             boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +280,35 @@ public class FrmAlbum extends javax.swing.JFrame {
         //Nombre del album
         
         lblAlbum.setText(evt.getActionCommand());
-        ;
+        paneFotos.removeAll();
+        paneFotos.setLayout(new GridLayout(0,4));
+        //Numero de Albumnes guardados
+        for(int x=0;x<=20;x++){
+            Foto foto=new Foto("descripcion"+x, "lugar"+x," fecha");
+            JButton boton=new JButton("Nombre");
+            ImageIcon imageIcon = new ImageIcon("D:\\Imágenes\\aa.png"); // load the image to a imageIcon
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            imageIcon = new ImageIcon(newimg);  // transform it back
+            boton.setIcon(imageIcon);
+            boton.setVerticalTextPosition(SwingConstants.BOTTOM);
+            boton.setHorizontalTextPosition(SwingConstants.CENTER);
+            boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFotoActionPerformed(evt,foto);
+            }
+            });
+            paneFotos.add(boton);
+        } 
+        paneFotos.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+    }
+    
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt,Foto foto){
+        this.txtDescripcion.setText(foto.getDescripcion());
+        this.txtFecha.setText(foto.getFecha());
+        this.txtLugar.setText(foto.getLugar());
+        
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarFoto;
@@ -268,15 +319,16 @@ public class FrmAlbum extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAlbum;
     private javax.swing.JPanel paneAlbum;
+    private javax.swing.JPanel paneFotos;
     private javax.swing.JPanel paneNombres;
     private javax.swing.JScrollPane scAlbum;
     private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JLabel txtFecha;
+    private javax.swing.JLabel txtLugar;
+    private javax.swing.JLabel txtPersonas;
     // End of variables declaration//GEN-END:variables
 }
