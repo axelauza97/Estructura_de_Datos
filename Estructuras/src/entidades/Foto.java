@@ -12,6 +12,7 @@ import java.util.LinkedList;
  * @author Axel
  */
 public class Foto {
+    private String path;
     private String descripcion;
     private String lugar;
     private String fecha;
@@ -19,7 +20,7 @@ public class Foto {
     private LinkedList reacciones;
     private LinkedList keywords;
     private LinkedList comentarios;
-    
+    private Camara camara;
             
     public Foto(String descripcion, String lugar, String fecha) {
         this.descripcion = descripcion;
@@ -66,6 +67,38 @@ public class Foto {
     public void setPersonas(LinkedList personas) {
         this.personas = personas;
     }
-    
+
+    public LinkedList getReacciones() {
+        return reacciones;
+    }
+
+    public void setReacciones(LinkedList reacciones) {
+        this.reacciones = reacciones;
+    }
+
+    public LinkedList getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(LinkedList keywords) {
+        this.keywords = keywords;
+    }
+
+    public LinkedList getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(LinkedList comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public Camara getCamara() {
+        return camara;
+    }
+
+    public void setCamara(Camara camara) {
+        this.camara = camara;
+    }
+
     
 }

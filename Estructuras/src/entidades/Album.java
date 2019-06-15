@@ -21,6 +21,7 @@ public class Album {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fotos = fotos;
+        fotos.addLast(fotos.getFirst());
     }
 
     public String getNombre() {

@@ -7,7 +7,6 @@ package entidades;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  *
@@ -21,17 +20,17 @@ public class Galeria {
         albumFoto=new ArrayList<>();
     }
     
-    public boolean llenarGaleria(Queue fotos,Queue album){
+    public boolean llenarGaleria(LinkedList fotos,LinkedList album){
         //Fotos sin Album
         albumFoto.add(fotos);
         albumFoto.add(album);
         return true;
     }
-    public Queue getAlbum(){
-        return (Queue) albumFoto.get(0);
+    public LinkedList getAlbum(){
+        return (LinkedList) albumFoto.get(0);
     }
-    public Queue getFotos(){
-        return (Queue) albumFoto.get(1);
+    public LinkedList getFotos(){
+        return (LinkedList) albumFoto.get(1);
     }
     
 }

@@ -283,7 +283,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         paneFotos.removeAll();
         paneFotos.setLayout(new GridLayout(0,4));
         //Numero de Albumnes guardados
-        for(int x=0;x<=20;x++){
+        for(int x=0;x<=10;x++){
             Foto foto=new Foto("descripcion"+x, "lugar"+x," fecha");
             JButton boton=new JButton("Nombre");
             ImageIcon imageIcon = new ImageIcon("D:\\Imágenes\\aa.png"); // load the image to a imageIcon
