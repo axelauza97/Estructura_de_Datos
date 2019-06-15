@@ -5,6 +5,7 @@
  */
 package archivos;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,19 +19,39 @@ import java.util.LinkedList;
  */
 public class Archivo {
     private String RUTA_BASE = "D:\\Estructuras\\";
-    private String USUARIO;
+    private String USUARIO="DEFAULT";
     private String ALBUMS = "ALBUMS";
     private String GALERIA = "GALERIA";
     private String FOTO = "FOTO"; 
 
     public Archivo(String USUARIO) {
         this.USUARIO = USUARIO;
+        this.crearCarpetas();
+    }
+    public Archivo(){
+        this.crearCarpetas();
     }
     
-    
-    public LinkedList read(){
-         // Deserialization 
-        String fileName=RUTA_BASE+ALBUMS+USUARIO;
+    public LinkedList readGaleria(){
+        // Deserialization 
+        String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+GALERIA+"\\"+GALERIA+".txt";
+        return this.read(fileName);
+    }
+    public LinkedList readAlbum(){        
+        String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";
+        return this.read(fileName);
+    }
+    public boolean saveGaleria(LinkedList object){
+        // Deserialization 
+        String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+GALERIA+"\\"+GALERIA+".txt";
+        return this.save(object,fileName);
+    }
+    public boolean saveAlbum(LinkedList object){        
+        String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";
+        return this.save(object,fileName);
+    }
+    private LinkedList read(String fileName){
+        // Deserialization 
         LinkedList objects = null;
         try
         {    
@@ -39,18 +60,15 @@ public class Archivo {
             ObjectInputStream in = new ObjectInputStream(file); 
               
             // Method for deserialization of object 
-            objects = (LinkedList) in.readObject(); 
-              
+            objects = (LinkedList) in.readObject();               
             in.close(); 
-            file.close(); 
-              
+            file.close();               
             System.out.println("Object has been deserialized ");
-            
         } 
           
         catch(IOException ex) 
         { 
-            System.out.println("IOException is caught"); 
+            System.out.println("Nothing to read"); 
         } 
           
         catch(ClassNotFoundException ex) 
@@ -58,10 +76,10 @@ public class Archivo {
             System.out.println("ClassNotFoundException is caught"); 
         } 
         return objects;
+        
     }
-    public boolean save(LinkedList object){
+    private boolean save(LinkedList object,String fileName){
         // Serialization  
-        String fileName=RUTA_BASE+ALBUMS+USUARIO;
         try
         {    
             //Saving of object in a file 
@@ -85,5 +103,16 @@ public class Archivo {
         } 
   
     
+    }
+    private void crearCarpetas(){
+        File principal = new File(RUTA_BASE);
+        principal.mkdirs();
+        File usuario = new File(principal,USUARIO);
+        usuario.mkdirs();
+        File galeria = new File(usuario,GALERIA);
+        galeria.mkdirs();
+        File album = new File(usuario,ALBUMS);
+        album.mkdirs();
+        
     }
 }

@@ -19,7 +19,7 @@ public class Estructuras {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        FrmAlbum frm = new FrmAlbum();
+        FrmLogin frm = new FrmLogin();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }

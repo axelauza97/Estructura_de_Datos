@@ -5,13 +5,14 @@
  */
 package entidades;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Axel
  */
-public class Foto {
+public class Foto implements Serializable{
     private String path;
     private String descripcion;
     private String lugar;

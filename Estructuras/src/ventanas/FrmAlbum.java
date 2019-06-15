@@ -10,6 +10,7 @@ import entidades.Foto;
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.LinkedList;
 import javax.accessibility.AccessibleRole;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,11 +23,12 @@ import javax.swing.SwingConstants;
  * @author Axel
  */
 public class FrmAlbum extends javax.swing.JFrame {
-
+    private Archivo archivo;
     /**
      * Creates new form FrmAlbum
      */
-    public FrmAlbum() {
+    public FrmAlbum(Archivo archivo) {
+        this.archivo=archivo;
         initComponents();
         loadAlbums();
     }
@@ -228,44 +230,14 @@ public class FrmAlbum extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnAgregarFotoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmAlbum().setVisible(true);
-            }
-        });
-    }
+   
     private void loadAlbums(){
+        //Galeria tendrá todas las fotos pero solo mantendra en el SOFT las sin album
+        LinkedList galeria= archivo.readGaleria();
+        LinkedList album= archivo.readAlbum();
         paneNombres.setLayout(new GridLayout(0,2,5,10));
         //Numero de Albumnes guardados
-        for(int x=0;x<=20;x++){
+        for(int x=0;x<album.size();x++){
             JButton boton=new JButton("Album "+String.valueOf(x));
             boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

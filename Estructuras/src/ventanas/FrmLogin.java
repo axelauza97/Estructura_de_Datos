@@ -5,6 +5,9 @@
  */
 package ventanas;
 
+import archivos.Archivo;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Axel
@@ -49,6 +52,11 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1.setText("Contraseña");
 
         btnInvitado.setText("Invitado");
+        btnInvitado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInvitadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,14 +103,28 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         if(txtPass.getText().toString().trim().equals("") && txtUser.getText().toString().trim().equals("")){
-            System.out.println("PONER USER");
+            JOptionPane.showMessageDialog(this, "Introducir Usuario y Contraseña o entrar como Invitado!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-        
+            Archivo archivo=new Archivo("Axel");
+            FrmAlbum frm = new FrmAlbum(archivo);
+            frm.setLocationRelativeTo(null);
+            frm.setVisible(true);
+            this.setVisible(false);       
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
-
+    private void btnInvitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvitadoActionPerformed
+        // TODO add your handling code here:
+        Archivo archivo=new Archivo();
+        if(archivo.readAlbum()==null){
+            FrmAlbum frm = new FrmAlbum(archivo);
+            frm.setLocationRelativeTo(null);
+            frm.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_btnInvitadoActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnInvitado;

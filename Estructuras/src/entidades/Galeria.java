@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -12,7 +13,7 @@ import java.util.LinkedList;
  *
  * @author Axel
  */
-public class Galeria {
+public class Galeria implements Serializable{
     
     private ArrayList<Object> albumFoto;
 
@@ -29,6 +30,7 @@ public class Galeria {
     public LinkedList getAlbum(){
         return (LinkedList) albumFoto.get(0);
     }
+    //sin album
     public LinkedList getFotos(){
         return (LinkedList) albumFoto.get(1);
     }

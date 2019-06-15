@@ -5,13 +5,14 @@
  */
 package entidades;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Axel
  */
-public class Album {
+public class Album implements Serializable{
     private String nombre;
     private String descripcion;
     //CIRCULAR
