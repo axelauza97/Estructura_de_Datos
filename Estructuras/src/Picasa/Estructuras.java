@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package estructuras;
+package Picasa;
 
-import ventanas.FrmAlbum;
-import ventanas.FrmLogin;
+import Views.FrmAlbum;
+import Views.FrmLogin;
 
 /**
  *
@@ -19,9 +19,10 @@ public class Estructuras {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+//        FrmLogin frm = new FrmLogin();
         FrmLogin frm = new FrmLogin();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }
-    
+
 }

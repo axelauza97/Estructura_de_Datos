@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ventanas;
+package Views;
 
 import archivos.Archivo;
 import javax.swing.JOptionPane;

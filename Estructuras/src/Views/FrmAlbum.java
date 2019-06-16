@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ventanas;
+package Views;
 
 import archivos.Archivo;
 import entidades.Foto;
@@ -23,15 +23,22 @@ import javax.swing.SwingConstants;
  * @author Axel
  */
 public class FrmAlbum extends javax.swing.JFrame {
+
     private Archivo archivo;
+
     /**
      * Creates new form FrmAlbum
      */
     public FrmAlbum(Archivo archivo) {
-        this.archivo=archivo;
+        this.archivo = archivo;
         initComponents();
         loadAlbums();
+        //agregue el icono de ventana
+        Image icon = new ImageIcon(getClass().getResource("/Resources/Picasa.png")).getImage();
+        setIconImage(icon);
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -225,62 +232,60 @@ public class FrmAlbum extends javax.swing.JFrame {
 
     private void btnAgregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFotoActionPerformed
         // TODO add your handling code here:
-        
-        
-       
+
+
     }//GEN-LAST:event_btnAgregarFotoActionPerformed
 
-   
-    private void loadAlbums(){
+    private void loadAlbums() {
         //Galeria tendrá todas las fotos pero solo mantendra en el SOFT las sin album
-        LinkedList galeria= archivo.readGaleria();
-        LinkedList album= archivo.readAlbum();
-        paneNombres.setLayout(new GridLayout(0,2,5,10));
+        LinkedList galeria = archivo.readGaleria();
+        LinkedList album = archivo.readAlbum();
+        paneNombres.setLayout(new GridLayout(0, 2, 5, 10));
         //Numero de Albumnes guardados
-        for(int x=0;x<album.size();x++){
-            JButton boton=new JButton("Album "+String.valueOf(x));
+        for (int x = 0; x < album.size(); x++) {
+            JButton boton = new JButton("Album " + String.valueOf(x));
             boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlbumActionPerformed(evt);
-            }
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnAlbumActionPerformed(evt);
+                }
             });
             paneNombres.add(boton);
-        } 
+        }
         paneNombres.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
     }
-    private void btnAlbumActionPerformed(java.awt.event.ActionEvent evt){
+
+    private void btnAlbumActionPerformed(java.awt.event.ActionEvent evt) {
         //Nombre del album
-        
+
         lblAlbum.setText(evt.getActionCommand());
         paneFotos.removeAll();
-        paneFotos.setLayout(new GridLayout(0,4));
+        paneFotos.setLayout(new GridLayout(0, 4));
         //Numero de Albumnes guardados
-        for(int x=0;x<=10;x++){
-            Foto foto=new Foto("descripcion"+x, "lugar"+x," fecha");
-            JButton boton=new JButton("Nombre");
+        for (int x = 0; x <= 10; x++) {
+            Foto foto = new Foto("descripcion" + x, "lugar" + x, " fecha");
+            JButton boton = new JButton("Nombre");
             ImageIcon imageIcon = new ImageIcon("D:\\Imágenes\\aa.png"); // load the image to a imageIcon
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            Image newimg = image.getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
             imageIcon = new ImageIcon(newimg);  // transform it back
             boton.setIcon(imageIcon);
             boton.setVerticalTextPosition(SwingConstants.BOTTOM);
             boton.setHorizontalTextPosition(SwingConstants.CENTER);
             boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFotoActionPerformed(evt,foto);
-            }
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnFotoActionPerformed(evt, foto);
+                }
             });
             paneFotos.add(boton);
-        } 
+        }
         paneFotos.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
     }
-    
-    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt,Foto foto){
+
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt, Foto foto) {
         this.txtDescripcion.setText(foto.getDescripcion());
         this.txtFecha.setText(foto.getFecha());
         this.txtLugar.setText(foto.getLugar());
-        
-        
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarFoto;
