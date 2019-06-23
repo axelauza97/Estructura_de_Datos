@@ -117,12 +117,11 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnInvitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvitadoActionPerformed
         // TODO add your handling code here:
         Archivo archivo=new Archivo();
-        if(archivo.readAlbum()==null){
-            FrmAlbum frm = new FrmAlbum(archivo);
-            frm.setLocationRelativeTo(null);
-            frm.setVisible(true);
-            this.setVisible(false);
-        }
+        FrmAlbum frm = new FrmAlbum(archivo);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_btnInvitadoActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

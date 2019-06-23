@@ -28,11 +28,11 @@ public class Galeria implements Serializable{
         return true;
     }
     public LinkedList getAlbum(){
-        return (LinkedList) albumFoto.get(0);
+        return (LinkedList) albumFoto.get(1);
     }
     //sin album
     public LinkedList getFotos(){
-        return (LinkedList) albumFoto.get(1);
+        return (LinkedList) albumFoto.get(0);
     }
     
 }

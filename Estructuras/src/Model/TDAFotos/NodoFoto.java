@@ -10,16 +10,16 @@ package Model.TDAFotos;
  * @author David Sanchez
  */
 public class NodoFoto<E> {
-    private E ruta;
+    private E content;
     private NodoFoto<E> next;
     private NodoFoto<E> previous;
 
-    public NodoFoto(E ruta) {
-        this.ruta = ruta;
+    public NodoFoto(E content) {
+        this.content = content;
     }
 
-    public E getRuta() {
-        return ruta;
+    public E getContent() {
+        return content;
     }
 
     public NodoFoto<E> getNext() {
@@ -30,8 +30,8 @@ public class NodoFoto<E> {
         return previous;
     }
 
-    public void setRuta(E ruta) {
-        this.ruta = ruta;
+    public void setContent(E content) {
+        this.content = content;
     }
 
     public void setNext(NodoFoto<E> next) {

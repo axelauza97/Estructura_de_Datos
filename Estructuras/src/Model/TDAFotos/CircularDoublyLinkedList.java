@@ -11,17 +11,17 @@ import java.util.ListIterator;
  *
  * @author David Sanchez
  */
-public class TDAFotos<E> {
+public class CircularDoublyLinkedList<E> {
     //Como son listas circulares doblemente enlazadas solo se necesitara un nodo foto first y un efectivo
     private NodoFoto first;
     private int efectivo;
 
-    public TDAFotos() {
+    public CircularDoublyLinkedList() {
         this.first = null;
         this.efectivo = 0;
     }
     
-    public boolean addFirst(E element) {
+    public boolean addLast(E element) {
         NodoFoto<E> nodo = new NodoFoto(element);
         if(element == null)
             return false;
@@ -52,7 +52,7 @@ public class TDAFotos<E> {
         else if(efectivo == 1){
             this.first.setNext(null);
             this.first.setPrevious(null);
-            this.first.setRuta(null);
+            this.first.setContent(null);
             this.first = null;
         }
         else {
@@ -60,7 +60,7 @@ public class TDAFotos<E> {
             this.first.setPrevious(tmp.getPrevious());
             tmp.setPrevious(null);
             tmp.setNext(null);
-            tmp.setRuta(null);
+            tmp.setContent(null);
             this.first.getPrevious().setNext(this.first);
         }
         efectivo--;
@@ -73,7 +73,7 @@ public class TDAFotos<E> {
         salida.append("[ ");
         NodoFoto<String> nodo = this.first;
         for(int i =0; i < efectivo; i++){
-            salida.append(nodo.getRuta());
+            salida.append(nodo.getContent());
             if(i+1 != efectivo)
                 salida.append(", ");
         }
@@ -100,7 +100,7 @@ public class TDAFotos<E> {
                 nodoF = getFirts();
                 control = 0;
             }
-            E tmp = nodoF.getRuta();
+            E tmp = nodoF.getContent();
             nodoF = nodoF.getNext();
             return tmp;
         }
@@ -116,7 +116,7 @@ public class TDAFotos<E> {
                 nodoF = getFirts().getPrevious();
                 control = -1;
             }
-            E tmp = nodoF.getRuta();
+            E tmp = nodoF.getContent();
             nodoF = nodoF.getPrevious();
             return tmp;
         }
