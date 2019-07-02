@@ -17,7 +17,9 @@ public class NodoFoto<E> {
     public NodoFoto(E content) {
         this.content = content;
     }
-
+    public NodoFoto() {
+    
+    }
     public E getContent() {
         return content;
     }
@@ -41,4 +43,10 @@ public class NodoFoto<E> {
     public void setPrevious(NodoFoto<E> previous) {
         this.previous = previous;
     }
+
+    @Override
+    public String toString() {
+        return "NodoFoto{" + "content=" + content + '}';
+    }
+    
 }
