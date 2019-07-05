@@ -18,7 +18,7 @@ import java.util.LinkedList;
  * @author Axel
  */
 public class Archivo {
-    private String RUTA_BASE = "D:\\Estructuras\\";
+    private String RUTA_BASE = "C:\\Estructuras\\";
     private String USUARIO="DEFAULT";
     private String ALBUMS = "ALBUMS";
     private String GALERIA = "GALERIA";
@@ -52,7 +52,7 @@ public class Archivo {
     }
     private LinkedList read(String fileName){
         // Deserialization 
-        LinkedList objects = null;
+        LinkedList objects = new LinkedList();
         try
         {    
             // Reading the object from a file 

@@ -247,7 +247,7 @@ public class FrmAlbum extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(txtLugar))
                         .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(txtFecha))
                         .addGap(55, 55, 55)
@@ -296,12 +296,13 @@ public class FrmAlbum extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_btnCrearActionPerformed
-
-    private void loadAlbums() {
+private void loadAlbums() {
+//        //Galeria tendrá todas las fotos pero solo mantendra en el SOFT las sin album
+//        LinkedList galeria = archivo.readGaleria();
+//        LinkedList album = archivo.readAlbum();
         paneNombres.setLayout(new GridLayout(0, 2, 5, 10));
         //Numero de Albumnes guardados
-        if(album!=null)
-        for (int x = 0; x < album.size(); x++) {
+        for (int x = 0; x < 20; x++) {
             JButton boton = new JButton("Album " + String.valueOf(x));
             boton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,12 +319,12 @@ public class FrmAlbum extends javax.swing.JFrame {
 
         lblAlbum.setText(evt.getActionCommand());
         paneFotos.removeAll();
-        paneFotos.setLayout(new GridLayout(0, 4,5,10));
+        paneFotos.setLayout(new GridLayout(0, 4));
         //Numero de Albumnes guardados
         for (int x = 0; x <= 10; x++) {
             Foto foto = new Foto("descripcion" + x, "lugar" + x, " fecha");
             JButton boton = new JButton("Nombre");
-            ImageIcon imageIcon = new ImageIcon("D:\\Imágenes\\aa.png"); // load the image to a imageIcon
+            ImageIcon imageIcon = new ImageIcon("C:\\David\\Estructura_de_Datos\\Estructuras\\aa.png"); // Abres desde tu direccion donde esta el proyecto
             Image image = imageIcon.getImage(); // transform it 
             Image newimg = image.getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
             imageIcon = new ImageIcon(newimg);  // transform it back
