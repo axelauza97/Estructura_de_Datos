@@ -5,7 +5,7 @@
  */
 package entidades;
 
-import Model.TDAFotos.CircularDoublyLinkedList2;
+import Model.TDAFotos.CircularDoublyLinkedList;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -18,8 +18,13 @@ public class Album implements Serializable{
     private String nombre;
     private String descripcion;
     //CIRCULAR
-    private CircularDoublyLinkedList2<Foto> fotos;
+    private CircularDoublyLinkedList<Foto> fotos;
 
+    public Album(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        fotos=new CircularDoublyLinkedList<>();
+    }
     public Album(String nombre, String descripcion, LinkedList fotos) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -44,12 +49,17 @@ public class Album implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public CircularDoublyLinkedList2 getFotos() {
+    public CircularDoublyLinkedList getFotos() {
         return fotos;
     }
 
-    public void setFotos(CircularDoublyLinkedList2 fotos) {
+    public void setFotos(CircularDoublyLinkedList fotos) {
         this.fotos = fotos;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
     
     

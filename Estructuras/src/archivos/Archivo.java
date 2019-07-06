@@ -21,7 +21,6 @@ public class Archivo {
     private String RUTA_BASE = "D:\\Estructuras\\";
     private String USUARIO="DEFAULT";
     private String ALBUMS = "ALBUMS";
-    private String GALERIA = "GALERIA";
     private String FOTO = "FOTO"; 
 
     public Archivo(String USUARIO) {
@@ -32,19 +31,9 @@ public class Archivo {
         this.crearCarpetas();
     }
     
-    public LinkedList readGaleria(){
-        // Deserialization 
-        String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+GALERIA+"\\"+GALERIA+".txt";
-        return this.read(fileName);
-    }
     public LinkedList readAlbum(){        
         String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";
         return this.read(fileName);
-    }
-    public boolean saveGaleria(LinkedList object){
-        // Deserialization 
-        String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+GALERIA+"\\"+GALERIA+".txt";
-        return this.save(object,fileName);
     }
     public boolean saveAlbum(LinkedList object){        
         String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";
@@ -109,8 +98,6 @@ public class Archivo {
         principal.mkdirs();
         File usuario = new File(principal,USUARIO);
         usuario.mkdirs();
-        File galeria = new File(usuario,GALERIA);
-        galeria.mkdirs();
         File album = new File(usuario,ALBUMS);
         album.mkdirs();
         

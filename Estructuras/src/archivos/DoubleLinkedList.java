@@ -9,9 +9,9 @@ package archivos;
  *
  * @author AxelAuzaA
  */
-public class DoubleLinkedList {
-    private SimpleNode header=null;
-    private SimpleNode last=null;
+public class DoubleLinkedList<E> {
+    private SimpleNode<E> header=null;
+    private SimpleNode<E> last=null;
 
     public DoubleLinkedList() {
     }
