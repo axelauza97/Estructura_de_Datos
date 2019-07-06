@@ -23,7 +23,7 @@ public class FrmCrearFoto extends javax.swing.JFrame {
     public FrmCrearFoto() {
         initComponents();
         
-       ImageIcon imageIcon = new ImageIcon("D:\\Imágenes\\aa.png"); // load the image to a imageIcon
+       ImageIcon imageIcon = new ImageIcon("C:\\Imágenes\\aa.png"); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
         Dimension d=lblFoto.getSize();
         Image newimg = image.getScaledInstance(Math.round((float) d.getWidth()), (int) Math.round(d.getHeight()), java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  

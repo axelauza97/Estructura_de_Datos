@@ -5,12 +5,17 @@
  */
 package archivos;
 
+import entidades.Personas;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -30,7 +35,26 @@ public class Archivo {
     public Archivo(){
         this.crearCarpetas();
     }
-    
+    public ArrayList readPersonas() {
+        ArrayList<Personas> personas = new ArrayList();
+        String fileName="src\\Resources\\personas.txt";
+        try{
+        File f = new File(fileName);
+        if(f.exists()){
+            FileReader fl=new FileReader(f);
+            BufferedReader br = new BufferedReader(fl);
+            String linea;
+            while((linea=br.readLine())!=null){
+                String[] per = linea.split("%");
+                Personas p = new Personas(per[0],per[1]);
+                personas.add(p);
+            }
+        }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return personas;
+    }
     public LinkedList readAlbum(){        
         String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";
         return this.read(fileName);
