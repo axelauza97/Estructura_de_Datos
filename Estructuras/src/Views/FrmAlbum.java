@@ -34,9 +34,12 @@ public class FrmAlbum extends javax.swing.JFrame {
      * Creates new form FrmAlbum
      */
     
+    public FrmAlbum() {
+        loadFrm();
+        loadAlbums();
+    }
     public FrmAlbum(Foto foto) {
         loadFrm();
-        
         loadAlbums();
     }
     public FrmAlbum(Album albumNew) {
@@ -384,7 +387,10 @@ public class FrmAlbum extends javax.swing.JFrame {
         if(album.isEmpty())
             JOptionPane.showMessageDialog(this, "¡Primero cree un Album!", "Error", JOptionPane.ERROR_MESSAGE);
         else{
-        
+            FrmCrearFoto frm = new FrmCrearFoto();
+            frm.setLocationRelativeTo(null);
+            frm.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_btnAgregarFotoActionPerformed
 

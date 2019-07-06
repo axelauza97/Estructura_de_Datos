@@ -6,17 +6,18 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
  * @author User
  */
-public class Personas implements Serializable {
+public class Persona implements Serializable {
         private String nombres;
         private String apellidos;
         
         
-        public Personas(String nombres,String apellidos){
+        public Persona(String nombres,String apellidos){
             this.nombres = nombres;
             this.apellidos=apellidos;
         }
@@ -37,4 +38,24 @@ public class Personas implements Serializable {
         public String toString(){
             return nombres + " "+ apellidos;
         }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persona other = (Persona) obj;
+        if (!Objects.equals(this.nombres, other.nombres)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos, other.apellidos)) {
+            return false;
+        }
+        return true;
+    }
+        
 }

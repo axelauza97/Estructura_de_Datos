@@ -22,13 +22,12 @@ public class Estructuras {
     public static void main(String[] args) {
         // TODO code application logic here
 //        FrmLogin frm = new FrmLogin();
-        /*FrmLogin frm = new FrmLogin();
+        FrmLogin frm = new FrmLogin();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
-        frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);*/
-        FrmPersonas frmp = new FrmPersonas();
+        /*FrmPersonas frmp = new FrmPersonas();
         frmp.setLocationRelativeTo(null);
-        frmp.setVisible(true);
+        frmp.setVisible(true);*/
     }
 
 }

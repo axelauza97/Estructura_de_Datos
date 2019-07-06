@@ -20,9 +20,22 @@ public class Foto implements Serializable{
     private LinkedList personas;
     private LinkedList reacciones;
     private LinkedList keywords;
-    private LinkedList comentarios;
+    private String comentarios;
     private Camara camara;
+
+    public Foto(String path, String descripcion, String lugar, String fecha, LinkedList personas, LinkedList reacciones, LinkedList keywords, String comentarios, Camara camara) {
+        this.path = path;
+        this.descripcion = descripcion;
+        this.lugar = lugar;
+        this.fecha = fecha;
+        this.personas = personas;
+        this.reacciones = reacciones;
+        this.keywords = keywords;
+        this.comentarios = comentarios;
+        this.camara = camara;
+    }
             
+    
     public Foto(String descripcion, String lugar, String fecha) {
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -85,11 +98,11 @@ public class Foto implements Serializable{
         this.keywords = keywords;
     }
 
-    public LinkedList getComentarios() {
+    public String getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(LinkedList comentarios) {
+    public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
     }
 

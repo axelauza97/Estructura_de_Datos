@@ -5,7 +5,7 @@
  */
 package archivos;
 
-import entidades.Personas;
+import entidades.Persona;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +36,7 @@ public class Archivo {
         this.crearCarpetas();
     }
     public ArrayList readPersonas() {
-        ArrayList<Personas> personas = new ArrayList();
+        ArrayList<Persona> personas = new ArrayList();
         String fileName="src\\Resources\\personas.txt";
         try{
         File f = new File(fileName);
@@ -46,7 +46,7 @@ public class Archivo {
             String linea;
             while((linea=br.readLine())!=null){
                 String[] per = linea.split("%");
-                Personas p = new Personas(per[0],per[1]);
+                Persona p = new Persona(per[0],per[1]);
                 personas.add(p);
             }
         }
