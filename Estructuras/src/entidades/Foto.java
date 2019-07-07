@@ -16,7 +16,8 @@ import java.util.LinkedList;
 public class Foto implements Serializable{
     private String path;
     private String descripcion;
-    private String lugar;
+    private Ubicacion ubicacion;
+   
     private String fecha;
     private SimpleLinkedList<Persona> personas;
     private SimpleLinkedList<String> reacciones;
@@ -24,10 +25,10 @@ public class Foto implements Serializable{
     private String comentarios;
     private Camara camara;
 
-    public Foto(String path, String descripcion, String lugar, String fecha, SimpleLinkedList<Persona> personas, SimpleLinkedList<String> reacciones, SimpleLinkedList<String> keywords, String comentarios, Camara camara) {
+    public Foto(String path, String descripcion, String ubicacion, String fecha, SimpleLinkedList<Persona> personas, SimpleLinkedList<String> reacciones, SimpleLinkedList<String> keywords, String comentarios, Camara camara) {
         this.path = path;
         this.descripcion = descripcion;
-        this.lugar = lugar;
+        this.ubicacion.lugar =ubicacion;
         this.fecha = fecha;
         this.personas = personas;
         this.reacciones = reacciones;
@@ -36,9 +37,9 @@ public class Foto implements Serializable{
         this.camara = camara;
     }
 
-    public Foto(String descripcion, String lugar, String fecha) {
+    public Foto(String descripcion, Ubicacion ubicacion, String fecha) {
         this.descripcion = descripcion;
-        this.lugar = lugar;
+        this.ubicacion =ubicacion ;
         this.fecha = fecha;
     }
     
@@ -59,13 +60,7 @@ public class Foto implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public String getLugar() {
-        return lugar;
-    }
-
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
-    }
+   
 
     public String getFecha() {
         return fecha;
@@ -117,7 +112,11 @@ public class Foto implements Serializable{
 
     @Override
     public String toString() {
-        return lugar + "{" + fecha + "}["+ camara+ "]";
+        return ubicacion.lugar + "{" + fecha + "}["+ camara+ "]";
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
     }
 
     

@@ -64,7 +64,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         initComponents();
         this.lblFecha.setText("");
         this.lblLugar.setText("");
-        this.lblComentarios.setText("");
+        this.jTextField1.setText("");
         this.lblCamara.setText("");
         
         //agregue el icono de ventana
@@ -540,7 +540,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         this.txtDescripcion.setText(foto.getDescripcion());
         this.txtPath.setText(foto.getPath());
         this.lblFecha.setText(foto.getFecha());
-        this.lblLugar.setText(foto.getLugar());
+        this.lblLugar.setText(foto.getUbicacion().getLugar());
         cbPersonas.removeAllItems();
         for(Persona persona:foto.getPersonas()){
             this.cbPersonas.addItem(persona);

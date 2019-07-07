@@ -12,6 +12,7 @@ import entidades.Album;
 import entidades.Camara;
 import entidades.Foto;
 import entidades.Persona;
+import entidades.Ubicacion;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
@@ -360,7 +361,7 @@ public class FrmCrearFoto extends javax.swing.JFrame {
             reaccion.addLast((String) modeloReaccion.get(x));
         }
         Foto foto=new Foto(lblPath.getText().toString(),txtDescripcion.getText().toString(),
-        txtLugar.getText().toString(),txtFecha.getText().toString(),personas,reaccion,keywords,txtComentario.getText().toString(), (Camara) cbCamara.getSelectedItem());
+                txtLugar.getText(),txtFecha.getText().toString(),personas,reaccion,keywords,txtComentario.getText().toString(), (Camara) cbCamara.getSelectedItem());
         CircularDoublyLinkedList ltCircular;
         if(album.getFotos().isEmpty()){
             ltCircular=new CircularDoublyLinkedList();
