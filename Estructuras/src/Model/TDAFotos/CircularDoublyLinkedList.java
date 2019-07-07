@@ -216,6 +216,7 @@ public class CircularDoublyLinkedList<E> implements List<E>, Iterable<E>, Serial
             }
         }
         return "[" + sb + ']';
+        
     }
 
     @Override
@@ -297,65 +298,7 @@ public class CircularDoublyLinkedList<E> implements List<E>, Iterable<E>, Serial
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ListIterator<E> listIterator(int index) {
-        ListIterator<E> it = new ListIterator<E>() {
-            private NodoFoto<E> p = nodeIndex(index);
-            private int current = index;
-
-            @Override
-            public boolean hasNext() {
-                return p != null;
-            }
-
-            @Override
-            public E next() {
-                E tmp = p.getContent();
-                p = p.getNext();
-                current++;
-                return tmp;
-            }
-
-            @Override
-            public boolean hasPrevious() {
-                return p != null;
-            }
-
-            @Override
-            public E previous() {
-                E tmp = p.getContent();
-                p = p.getPrevious();
-                return tmp;
-            }
-
-            @Override
-            public int nextIndex() {
-                return current + 1;
-            }
-
-            @Override
-            public int previousIndex() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void set(E e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void add(E e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-        };
-        return it;
-    }
+   
 
     
     @Override
@@ -483,4 +426,5 @@ public class CircularDoublyLinkedList<E> implements List<E>, Iterable<E>, Serial
         };
         return it;
     }
+    
 }
