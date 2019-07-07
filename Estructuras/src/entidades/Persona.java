@@ -5,14 +5,19 @@
  */
 package entidades;
 
+import archivos.SimpleLinkedList;
+import archivos.SimpleNode;
 import java.io.Serializable;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 
 /**
  *
  * @author User
  */
-public class Persona implements Serializable {
+public class Persona implements Serializable,Comparable {
         private String nombres;
         private String apellidos;
         
@@ -57,5 +62,40 @@ public class Persona implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public int compareTo(Object o) {
+            if(this.apellidos.equals(((Persona)o).apellidos)&&this.nombres.equals(((Persona)o).nombres)){
+                return 0;
+            }
+            return -1;
+    }
+       
+    Comparator<Persona> cmppersona = new Comparator<Persona>() {
+            @Override
+            public int compare(Persona o1, Persona o2) {
+                if(o1.getNombres().equals(o2.getApellidos())&&o1.getNombres().equals(o2.getNombres())){
+                    return 0;
+                }
+                return -1;
+            }
+        };
+    
+    public HashSet<Foto> Busqueda(SimpleLinkedList<Foto> fo, Comparator cmp, Persona p){
+        HashSet<Foto> f=new HashSet();
+        Iterator it = fo.iterator();
+        SimpleNode<Foto> n; 
+        for(n=fo.getFirstNode();n!=null;n.getNextNode()){
+            Iterator i = n.getContent().getPersonas().iterator();
+            while(i.hasNext()){
+                if(cmp.compare((Persona)i.next(), p)==1){
+                    f.add(n.getContent());
+                }
+            }
+            
+            
+        }
+        return f;
         
+    }
 }
