@@ -361,10 +361,14 @@ public class FrmCrearFoto extends javax.swing.JFrame {
         }
         Foto foto=new Foto(lblPath.getText().toString(),txtDescripcion.getText().toString(),
         txtLugar.getText().toString(),txtFecha.getText().toString(),personas,reaccion,keywords,txtComentario.getText().toString(), (Camara) cbCamara.getSelectedItem());
-        CircularDoublyLinkedList ltCircular=new CircularDoublyLinkedList();
-        ltCircular=album.getFotos();
-        
-        ltCircular.add(foto);
+        CircularDoublyLinkedList ltCircular;
+        if(album.getFotos().isEmpty()){
+            ltCircular=new CircularDoublyLinkedList();
+        }
+        else{
+            ltCircular=album.getFotos();
+        }
+        ltCircular.addFirst(foto);
         album.setFotos(ltCircular);
         FrmAlbum frm = new FrmAlbum(album);
         frm.setLocationRelativeTo(null);

@@ -61,8 +61,8 @@ public class FrmAlbum extends javax.swing.JFrame {
     private void loadFrm(){
         initComponents();
         //agregue el icono de ventana
-        Image icon = new ImageIcon(getClass().getResource("/Resources/Picasa.png")).getImage();
-        setIconImage(icon);
+//        Image icon = new ImageIcon(getClass().getResource("/Resources/Picasa.png")).getImage();
+//        setIconImage(icon);
     }
 
     /**
