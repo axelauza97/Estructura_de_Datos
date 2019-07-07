@@ -53,10 +53,8 @@ public class FrmAlbum extends javax.swing.JFrame {
         if(album.contains(albumNew)){
             int pos=album.indexOf(albumNew);
             album.set(pos, albumNew);
-            System.out.println("EXISTE");
         }else{
             album.addLast(albumNew);
-            System.out.println("CREA");
         }
         archivo.saveAlbum(album);
         loadAlbums();
@@ -122,6 +120,11 @@ public class FrmAlbum extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout paneFotosLayout = new javax.swing.GroupLayout(paneFotos);
         paneFotos.setLayout(paneFotosLayout);
@@ -463,6 +466,12 @@ public class FrmAlbum extends javax.swing.JFrame {
         this.setVisible(false);    
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        archivo.saveAlbum(album);
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
+
     private void loadAlbums() {
         paneNombres.setLayout(new GridLayout(0, 2, 5, 10));
         //Numero de Albumnes guardados
@@ -494,8 +503,6 @@ public class FrmAlbum extends javax.swing.JFrame {
             //Numero de Imagenes guardados
             if(!albumA.getFotos().isEmpty()){
                 CircularDoublyLinkedList<Foto> fotos=albumActual.getFotos();
-                System.out.println(fotos.size());
-                System.out.println(fotos);
                 Iterator<Foto> li= fotos.iterator();
                 while(li.hasNext()){
                     Foto foto = (Foto) li.next();
