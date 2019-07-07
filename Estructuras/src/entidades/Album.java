@@ -86,6 +86,8 @@ public class Album implements Serializable{
         }
         return true;
     }
-    
+    public boolean containsFoto(Foto foto){
+        return fotos.contains(foto);
+    }
     
 }

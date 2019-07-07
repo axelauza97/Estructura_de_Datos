@@ -36,6 +36,7 @@ public class FrmAlbum extends javax.swing.JFrame {
     public Archivo archivo=FrmHome.archivo;
     private static SimpleLinkedList<Album> album;
     private Album albumActual;
+    private Foto fotoActual;
     /**
      * Creates new form FrmAlbum
      */
@@ -94,7 +95,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnModificar = new javax.swing.JButton();
+        btnEliminarFoto = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         txtLugar = new javax.swing.JLabel();
@@ -190,11 +191,11 @@ public class FrmAlbum extends javax.swing.JFrame {
 
         jLabel6.setText("Personas");
 
-        btnModificar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarFoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnEliminarFoto.setText("Eliminar");
+        btnEliminarFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnEliminarFotoActionPerformed(evt);
             }
         });
 
@@ -314,7 +315,7 @@ public class FrmAlbum extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addComponent(lblNombre)
                                 .addGap(18, 18, Short.MAX_VALUE)
-                                .addComponent(btnModificar))
+                                .addComponent(btnEliminarFoto))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -361,7 +362,7 @@ public class FrmAlbum extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,15 +446,13 @@ public class FrmAlbum extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    private void btnEliminarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFotoActionPerformed
         // TODO add your handling code here:
-        if(lblNombre.getText().toString().equals("Album")){
-            lblNombre.setText("Foto");
-            txtPath.enable(false);
-            btnModificar.setText("Modificar");
+        if(albumActual==null || fotoActual==null ){
+            JOptionPane.showMessageDialog(this, "¡Primero seleccione un album y una foto!", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
         
-    }//GEN-LAST:event_btnModificarActionPerformed
+    }//GEN-LAST:event_btnEliminarFotoActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
@@ -533,6 +532,7 @@ public class FrmAlbum extends javax.swing.JFrame {
     }
 
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt, Foto foto) {
+        fotoActual=foto;
         this.txtDescripcion.setText(foto.getDescripcion());
         this.txtPath.setText(foto.getPath());
         this.lblFecha.setText(foto.getFecha());
@@ -556,7 +556,7 @@ public class FrmAlbum extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarFoto;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnEliminarFoto;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cbKeyword;
     private javax.swing.JComboBox cbPersonas;
