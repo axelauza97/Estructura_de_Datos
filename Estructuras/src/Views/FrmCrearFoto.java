@@ -369,6 +369,7 @@ public class FrmCrearFoto extends javax.swing.JFrame {
             ltCircular=album.getFotos();
         }
         ltCircular.addFirst(foto);
+        System.out.println(ltCircular);
         album.setFotos(ltCircular);
         FrmAlbum frm = new FrmAlbum(album);
         frm.setLocationRelativeTo(null);
