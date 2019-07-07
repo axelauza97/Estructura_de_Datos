@@ -448,8 +448,13 @@ public class FrmAlbum extends javax.swing.JFrame {
 
     private void btnEliminarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFotoActionPerformed
         // TODO add your handling code here:
-        if(albumActual==null || fotoActual==null ){
+        if(albumActual==null || fotoActual==null || !albumActual.containsFoto(fotoActual)){
             JOptionPane.showMessageDialog(this, "¡Primero seleccione un album y una foto!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            albumActual.getFotos().remove(fotoActual);
+            archivo.saveAlbum(album);
+            paneNombres.removeAll();
+            loadAlbums();
         }
         
     }//GEN-LAST:event_btnEliminarFotoActionPerformed
@@ -503,6 +508,15 @@ public class FrmAlbum extends javax.swing.JFrame {
             albumActual=albumA;
             txtDescripAl.setText(albumA.getDescripcion());
             lblAlbum.setText(albumA.toString());
+            txtDescripcion.setText("");
+            txtPath.setText("");
+            lblFecha.setText("");
+            lblLugar.setText("");
+            cbPersonas.removeAllItems();
+            cbReacciones.removeAllItems();
+            cbKeyword.removeAllItems();
+            lblComentarios.setText("");
+            lblCamara.setText("");
             paneFotos.removeAll();
             paneFotos.setLayout(new GridLayout(0,2,5,10));
             //Numero de Imagenes guardados
