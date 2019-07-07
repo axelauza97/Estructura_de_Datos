@@ -117,7 +117,7 @@ public class Foto implements Serializable{
 
     @Override
     public String toString() {
-        return "Foto{" + "path=" + path + ", descripcion=" + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + ", comentarios=" + comentarios + ", camara=" + camara + '}';
+        return lugar + "{" + fecha + "}["+ camara+ "]";
     }
 
     
