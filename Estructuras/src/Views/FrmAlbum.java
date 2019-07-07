@@ -62,6 +62,11 @@ public class FrmAlbum extends javax.swing.JFrame {
     
     private void loadFrm(){
         initComponents();
+        this.lblFecha.setText("");
+        this.lblLugar.setText("");
+        this.lblComentarios.setText("");
+        this.lblCamara.setText("");
+        
         //agregue el icono de ventana
 //        Image icon = new ImageIcon(getClass().getResource("/Resources/Picasa.png")).getImage();
 //        setIconImage(icon);
@@ -460,6 +465,7 @@ public class FrmAlbum extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
+        archivo.saveAlbum(album);
         FrmHome frm = new FrmHome();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
