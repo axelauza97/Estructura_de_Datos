@@ -5,11 +5,13 @@
  */
 package Model.TDAFotos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author David Sanchez
  */
-public class NodoFoto<E> {
+public class NodoFoto<E> implements Serializable{
     private E content;
     private NodoFoto<E> next;
     private NodoFoto<E> previous;

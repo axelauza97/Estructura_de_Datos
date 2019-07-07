@@ -5,11 +5,13 @@
  */
 package entidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Axel
  */
-public class Camara {
+public class Camara implements Serializable{
     private String marca;
     private String modelo;
 

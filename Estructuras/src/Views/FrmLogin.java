@@ -6,6 +6,9 @@
 package Views;
 
 import archivos.Archivo;
+import archivos.SimpleLinkedList;
+import entidades.Usuario;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +16,14 @@ import javax.swing.JOptionPane;
  * @author Axel
  */
 public class FrmLogin extends javax.swing.JFrame {
-
+    private Archivo archivo=new Archivo();
+    private SimpleLinkedList<Usuario> usuarios;
     /**
      * Creates new form loginPage
      */
     public FrmLogin() {
         initComponents();
+        usuarios=archivo.read("src\\Resources\\usuarios.txt");
     }
 
     /**
@@ -102,22 +107,56 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
+        Usuario usuario=new Usuario(txtUser.getText().toString(),txtPass.getText().toString());
+        
         if(txtPass.getText().toString().trim().equals("") && txtUser.getText().toString().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Introducir Usuario y Contraseña o entrar como Invitado!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            Archivo archivo=new Archivo("Axel");
-            FrmAlbum frm = new FrmAlbum(archivo);
-            frm.setLocationRelativeTo(null);
-            frm.setVisible(true);
-            this.setVisible(false);       
+            if(usuarios!=null && usuarios.contains(usuario)){
+                Archivo archivo=new Archivo(txtUser.getText().toString());
+                FrmHome frm = new FrmHome(archivo);
+                frm.setLocationRelativeTo(null);
+                frm.setVisible(true);
+                this.setVisible(false);       
+            }else{
+                int flag=0;
+                for(Usuario user:usuarios){
+                    System.out.println();
+                    if(user.getUsuario().equals(usuario.getUsuario())){
+                        JOptionPane.showMessageDialog(this, "¡Contraseña incorrecta!", "Error", JOptionPane.ERROR_MESSAGE);
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag!=1)
+                if (JOptionPane.showConfirmDialog(null, "¿Desea crear este usuario con ese nombre y contraseña ya que no existe?",
+                        "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    // yes option
+                    Archivo archivo=new Archivo(txtUser.getText().toString());
+                    if(usuarios==null){
+                        usuarios=new SimpleLinkedList<>();
+                    }
+                    usuarios.addLast(usuario);
+                    archivo.save(usuarios, "src\\Resources\\usuarios.txt");
+                    FrmHome frm = new FrmHome(archivo);
+                    frm.setLocationRelativeTo(null);
+                    frm.setVisible(true);
+                    this.setVisible(false); 
+                } else {
+                    // no option
+                    JOptionPane.showMessageDialog(this, "Introducir Usuario y Contraseña o entrar como Invitado!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            
+            }
+            
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnInvitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvitadoActionPerformed
         // TODO add your handling code here:
         Archivo archivo=new Archivo();
-        FrmAlbum frm = new FrmAlbum(archivo);
+        FrmHome frm = new FrmHome(archivo);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         this.setVisible(false);

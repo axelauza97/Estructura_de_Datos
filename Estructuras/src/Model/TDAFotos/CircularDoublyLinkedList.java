@@ -6,6 +6,7 @@
 package Model.TDAFotos;
 
 import entidades.Foto;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -14,7 +15,7 @@ import java.util.ListIterator;
  *
  * @author Axel
  */
-public class CircularDoublyLinkedList<E>{
+public class CircularDoublyLinkedList<E> implements Serializable{
     private NodoFoto<E> tail=null;
     private int size=0;
     

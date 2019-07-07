@@ -5,6 +5,8 @@
  */
 package archivos;
 
+import entidades.Album;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -12,7 +14,7 @@ import java.util.NoSuchElementException;
  *
  * @author User
  */
-public class SimpleLinkedList <E> implements List<E>,Iterable<E> {
+public class SimpleLinkedList <E> implements List<E>,Iterable<E>,Serializable {
     private SimpleNode<E> first, last;
     private int efectivo;
     
@@ -322,6 +324,7 @@ public class SimpleLinkedList <E> implements List<E>,Iterable<E> {
     public Iterator<E> iterator() {
             return new MyLinkedListIterator();
     }
+
     class MyLinkedListIterator implements Iterator<E>{
 
         SimpleNode<E> n = null;

@@ -6,6 +6,7 @@
 package Views;
 
 import archivos.Archivo;
+import archivos.SimpleLinkedList;
 import entidades.Album;
 import entidades.Foto;
 import java.awt.ComponentOrientation;
@@ -28,8 +29,8 @@ import javax.swing.SwingConstants;
  */
 public class FrmAlbum extends javax.swing.JFrame {
 
-    private static Archivo archivo;
-    private static LinkedList<Album> album;
+    public Archivo archivo=FrmHome.archivo;
+    private static SimpleLinkedList<Album> album;
     /**
      * Creates new form FrmAlbum
      */
@@ -44,7 +45,8 @@ public class FrmAlbum extends javax.swing.JFrame {
     }
     public FrmAlbum(Album albumNew) {
         loadFrm();
-        album.add(albumNew);
+        album.addLast(albumNew);
+        archivo.saveAlbum(album);
         loadAlbums();
     }
     public FrmAlbum(Archivo archivo) {
@@ -52,7 +54,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         loadFrm();
         album = archivo.readAlbum();
         if(album==null)
-            album=new LinkedList<>();
+            album=new SimpleLinkedList<>();
         loadAlbums();
     }
     
@@ -110,6 +112,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripAl = new javax.swing.JTextArea();
+        btnVolver = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -249,17 +252,27 @@ public class FrmAlbum extends javax.swing.JFrame {
         txtDescripAl.setEnabled(false);
         jScrollPane1.setViewportView(txtDescripAl);
 
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(paneNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCrear)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCrear)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVolver))
                             .addComponent(jLabel10)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -374,7 +387,9 @@ public class FrmAlbum extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(paneNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCrear))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnCrear)
+                                    .addComponent(btnVolver)))
                             .addComponent(scAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -415,6 +430,14 @@ public class FrmAlbum extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);        
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        FrmHome frm = new FrmHome();
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        this.setVisible(false);    
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void loadAlbums() {
         paneNombres.setLayout(new GridLayout(0, 2, 5, 10));
@@ -477,6 +500,7 @@ public class FrmAlbum extends javax.swing.JFrame {
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;

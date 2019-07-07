@@ -5,11 +5,13 @@
  */
 package archivos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author AxelAuzaA
  */
-public class SimpleNode<T> {
+public class SimpleNode<T> implements Serializable{
     private SimpleNode<T> nextNode;
     private SimpleNode<T> prevNode;
     private T content;
@@ -45,7 +47,7 @@ public class SimpleNode<T> {
 
     @Override
     public String toString() {
-        return "SimpleNode{" + content + '}';
+        return  (String) content;
     }
     
     

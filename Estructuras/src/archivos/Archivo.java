@@ -5,7 +5,9 @@
  */
 package archivos;
 
+import entidades.Camara;
 import entidades.Persona;
+import entidades.Usuario;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +24,7 @@ import java.util.LinkedList;
  *
  * @author Axel
  */
-public class Archivo {
+public class Archivo<T> {
     private String RUTA_BASE = "D:\\Estructuras\\";
     private String USUARIO="DEFAULT";
     private String ALBUMS = "ALBUMS";
@@ -56,17 +58,39 @@ public class Archivo {
         }
         return personas;
     }
-    public LinkedList readAlbum(){        
+    public SimpleLinkedList<Camara> readCamaras() {
+        SimpleLinkedList<Camara> camaras = new SimpleLinkedList();
+        String fileName="src\\Resources\\camara.txt";
+        try{
+        File f = new File(fileName);
+        if(f.exists()){
+            FileReader fl=new FileReader(f);
+            BufferedReader br = new BufferedReader(fl);
+            String linea;
+            while((linea=br.readLine())!=null){
+                String[] per = linea.split("%");
+                Camara p = new Camara(per[0],per[1]);
+                
+                camaras.addLast(p);
+            }
+        }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return camaras;
+    }
+    
+    public SimpleLinkedList<T> readAlbum(){        
         String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";
         return this.read(fileName);
     }
-    public boolean saveAlbum(LinkedList object){        
+    public boolean saveAlbum(SimpleLinkedList<T> object){        
         String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";
         return this.save(object,fileName);
     }
-    private LinkedList read(String fileName){
+    public SimpleLinkedList<T> read(String fileName){
         // Deserialization 
-        LinkedList objects = null;
+        SimpleLinkedList objects = null;
         try
         {    
             // Reading the object from a file 
@@ -74,7 +98,7 @@ public class Archivo {
             ObjectInputStream in = new ObjectInputStream(file); 
               
             // Method for deserialization of object 
-            objects = (LinkedList) in.readObject();               
+            objects = (SimpleLinkedList) in.readObject();               
             in.close(); 
             file.close();               
             System.out.println("Object has been deserialized ");
@@ -92,7 +116,7 @@ public class Archivo {
         return objects;
         
     }
-    private boolean save(LinkedList object,String fileName){
+    public boolean save(SimpleLinkedList<T> object,String fileName){
         // Serialization  
         try
         {    
