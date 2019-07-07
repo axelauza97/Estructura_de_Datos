@@ -9,6 +9,7 @@ import archivos.Archivo;
 import archivos.SimpleLinkedList;
 import entidades.Camara;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,14 +17,24 @@ import javax.swing.DefaultListModel;
  */
 public class FrmCamaras extends javax.swing.JFrame {
 
-    Archivo a = new Archivo();
-    SimpleLinkedList<Camara> camaras = a.readCamaras();
-    DefaultListModel modelo = new DefaultListModel();
+    public Archivo archivo=FrmHome.archivo;
+    private SimpleLinkedList<Camara> camaras;
+    private DefaultListModel modelo=new DefaultListModel();
     /**
      * Creates new form FrmCamara
      */
     public FrmCamaras() {
         initComponents();
+        camaras = archivo.read("src\\Resources\\camaras.txt");
+        ltCamara.setModel(modelo);
+        if(camaras==null){
+            camaras=new SimpleLinkedList<>();
+        }
+        else{
+            for(Camara camara:camaras){
+                modelo.addElement(camara);
+            }
+        }
     }
 
     /**
@@ -86,7 +97,7 @@ public class FrmCamaras extends javax.swing.JFrame {
         jLabel3.setText("Marca");
 
         btnCrear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCrear.setText("Crear Camara/s");
+        btnCrear.setText("Crear/Modificar Camara/s");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
@@ -155,30 +166,42 @@ public class FrmCamaras extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-        for (int x=0; x< modelo.size();x++)
-        camaras.remove(x);
-
-        for (int x=0; x< modelo.size();x++)
-        camaras.addLast((Camara) modelo.getElementAt(x));
+        volver();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        Camara persona=new Camara(txtMarca.getText().toString(),txtModelo.getText().toString());
-        modelo.addElement(persona);
+        if(txtMarca.getText().toString().trim()!="" && txtModelo.getText().toString().trim()!=""){
+            Camara camara=new Camara(txtMarca.getText().toString(),txtModelo.getText().toString());
+            modelo.addElement(camara);
+            camaras.addLast(camara);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        modelo.remove(ltCamara.getSelectedIndex());
+        if(modelo.getSize()!=0){
+            int pos=ltCamara.getSelectedIndex();
+            camaras.remove((Camara) modelo.get(pos));
+            modelo.remove(pos);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
-        
+        if(camaras.size()!=0)
+            archivo.save(camaras, "src\\Resources\\camaras.txt");
+        else
+            JOptionPane.showMessageDialog(this, "¡No se crearon camaras!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        volver();
     }//GEN-LAST:event_btnCrearActionPerformed
 
-
+    private void volver(){
+        FrmHome frm = new FrmHome();
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        this.setVisible(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCrear;

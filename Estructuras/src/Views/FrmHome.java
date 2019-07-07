@@ -122,7 +122,7 @@ public class FrmHome extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        FrmAlbum frm = new FrmAlbum(archivo);
+        FrmAlbum frm = new FrmAlbum();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         this.setVisible(false);

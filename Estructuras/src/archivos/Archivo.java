@@ -58,27 +58,6 @@ public class Archivo<T> {
         }
         return personas;
     }
-    public SimpleLinkedList<Camara> readCamaras() {
-        SimpleLinkedList<Camara> camaras = new SimpleLinkedList();
-        String fileName="src\\Resources\\camara.txt";
-        try{
-        File f = new File(fileName);
-        if(f.exists()){
-            FileReader fl=new FileReader(f);
-            BufferedReader br = new BufferedReader(fl);
-            String linea;
-            while((linea=br.readLine())!=null){
-                String[] per = linea.split("%");
-                Camara p = new Camara(per[0],per[1]);
-                
-                camaras.addLast(p);
-            }
-        }
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return camaras;
-    }
     
     public SimpleLinkedList<T> readAlbum(){        
         String fileName=RUTA_BASE+"\\"+USUARIO+"\\"+ALBUMS+"\\"+ALBUMS+".txt";

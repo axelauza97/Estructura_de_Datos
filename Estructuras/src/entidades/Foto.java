@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import archivos.SimpleLinkedList;
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -17,13 +18,13 @@ public class Foto implements Serializable{
     private String descripcion;
     private String lugar;
     private String fecha;
-    private LinkedList personas;
-    private LinkedList reacciones;
-    private LinkedList keywords;
+    private SimpleLinkedList<Persona> personas;
+    private SimpleLinkedList<String> reacciones;
+    private SimpleLinkedList<String> keywords;
     private String comentarios;
     private Camara camara;
 
-    public Foto(String path, String descripcion, String lugar, String fecha, LinkedList personas, LinkedList reacciones, LinkedList keywords, String comentarios, Camara camara) {
+    public Foto(String path, String descripcion, String lugar, String fecha, SimpleLinkedList<Persona> personas, SimpleLinkedList<String> reacciones, SimpleLinkedList<String> keywords, String comentarios, Camara camara) {
         this.path = path;
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -34,20 +35,20 @@ public class Foto implements Serializable{
         this.comentarios = comentarios;
         this.camara = camara;
     }
-            
-    
+
     public Foto(String descripcion, String lugar, String fecha) {
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.fecha = fecha;
     }
-
     
-    public Foto(String descripcion, String lugar, String fecha, LinkedList personas) {
-        this.descripcion = descripcion;
-        this.lugar = lugar;
-        this.fecha = fecha;
-        this.personas = personas;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getDescripcion() {
@@ -74,27 +75,27 @@ public class Foto implements Serializable{
         this.fecha = fecha;
     }
 
-    public LinkedList getPersonas() {
+    public SimpleLinkedList<Persona> getPersonas() {
         return personas;
     }
 
-    public void setPersonas(LinkedList personas) {
+    public void setPersonas(SimpleLinkedList<Persona> personas) {
         this.personas = personas;
     }
 
-    public LinkedList getReacciones() {
+    public SimpleLinkedList<String> getReacciones() {
         return reacciones;
     }
 
-    public void setReacciones(LinkedList reacciones) {
+    public void setReacciones(SimpleLinkedList<String> reacciones) {
         this.reacciones = reacciones;
     }
 
-    public LinkedList getKeywords() {
+    public SimpleLinkedList<String> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(LinkedList keywords) {
+    public void setKeywords(SimpleLinkedList<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -114,5 +115,6 @@ public class Foto implements Serializable{
         this.camara = camara;
     }
 
+    
     
 }

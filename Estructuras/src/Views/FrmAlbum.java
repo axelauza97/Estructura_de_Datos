@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Model.TDAFotos.CircularDoublyLinkedList;
 import archivos.Archivo;
 import archivos.SimpleLinkedList;
 import entidades.Album;
@@ -15,6 +16,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import javax.accessibility.AccessibleRole;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,30 +33,28 @@ public class FrmAlbum extends javax.swing.JFrame {
 
     public Archivo archivo=FrmHome.archivo;
     private static SimpleLinkedList<Album> album;
+    private Album albumActual;
     /**
      * Creates new form FrmAlbum
      */
     
     public FrmAlbum() {
-        loadFrm();
-        loadAlbums();
-    }
-    public FrmAlbum(Foto foto) {
-        loadFrm();
-        loadAlbums();
-    }
-    public FrmAlbum(Album albumNew) {
-        loadFrm();
-        album.addLast(albumNew);
-        archivo.saveAlbum(album);
-        loadAlbums();
-    }
-    public FrmAlbum(Archivo archivo) {
         this.archivo = archivo;
         loadFrm();
         album = archivo.readAlbum();
         if(album==null)
             album=new SimpleLinkedList<>();
+        loadAlbums();
+    }
+    public FrmAlbum(Album albumNew) {
+        loadFrm();
+        if(album.contains(albumNew)){
+            int pos=album.indexOf(albumNew);
+            album.set(pos, albumNew);
+        }else{
+            album.addLast(albumNew);
+        }
+        archivo.saveAlbum(album);
         loadAlbums();
     }
     
@@ -399,10 +399,10 @@ public class FrmAlbum extends javax.swing.JFrame {
 
     private void btnAgregarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFotoActionPerformed
         // TODO add your handling code here:
-        if(album.isEmpty())
-            JOptionPane.showMessageDialog(this, "¡Primero cree un Album!", "Error", JOptionPane.ERROR_MESSAGE);
+        if(album.isEmpty()|| lblAlbum.getText().toString()=="Album" || lblAlbum.getText().toString()=="Galeria")
+            JOptionPane.showMessageDialog(this, "¡Primero cree un album o seleccione alguno!", "Error", JOptionPane.ERROR_MESSAGE);
         else{
-            FrmCrearFoto frm = new FrmCrearFoto();
+            FrmCrearFoto frm = new FrmCrearFoto(albumActual);
             frm.setLocationRelativeTo(null);
             frm.setVisible(true);
             this.setVisible(false);
@@ -462,29 +462,33 @@ public class FrmAlbum extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent evt) {
             //Nombre del album
+            albumActual=albumA;
+            System.out.println(albumActual);
             txtDescripAl.setText(albumA.getDescripcion());
             lblAlbum.setText(albumA.toString());
             paneFotos.removeAll();
             paneFotos.setLayout(new GridLayout(0, 4,5,10));
             //Numero de Imagenes guardados
-            if(!albumA.getFotos().isEmpty())
-            for (int x = 0; x <= 10; x++) {
-                Foto foto = new Foto("descripcion" + x, "lugar" + x, " fecha");
-                JButton boton = new JButton("Nombre");
-                ImageIcon imageIcon = new ImageIcon("D:\\Imágenes\\aa.png"); // load the image to a imageIcon
-                Image image = imageIcon.getImage(); // transform it 
-                Image newimg = image.getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-                imageIcon = new ImageIcon(newimg);  // transform it back
-                boton.setIcon(imageIcon);
-                boton.setVerticalTextPosition(SwingConstants.BOTTOM);
-                boton.setHorizontalTextPosition(SwingConstants.CENTER);
-                boton.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        btnFotoActionPerformed(evt, foto);
-                    }
-                });
-                paneFotos.add(boton);
-            }
+            if(!albumA.getFotos().isEmpty()){
+                CircularDoublyLinkedList<Foto> fotos=albumActual.getFotos();
+                ListIterator li= fotos.listIterator();
+                while(li.hasNext()){
+                    Foto foto = (Foto) li.next();
+                    JButton boton = new JButton(foto.getLugar());
+                    ImageIcon imageIcon = new ImageIcon(foto.getPath()); // load the image to a imageIcon
+                    Image image = imageIcon.getImage(); // transform it 
+                    Image newimg = image.getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+                    imageIcon = new ImageIcon(newimg);  // transform it back
+                    boton.setIcon(imageIcon);
+                    boton.setVerticalTextPosition(SwingConstants.BOTTOM);
+                    boton.setHorizontalTextPosition(SwingConstants.CENTER);
+                    boton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            btnFotoActionPerformed(evt, foto);
+                        }
+                    });
+                    paneFotos.add(boton);
+            }}
             paneFotos.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
             }
     }
