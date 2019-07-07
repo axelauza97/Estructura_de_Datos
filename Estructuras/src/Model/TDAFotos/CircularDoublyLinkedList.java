@@ -9,6 +9,7 @@ import archivos.List;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -356,9 +357,36 @@ public class CircularDoublyLinkedList<E> implements List<E>, Iterable<E>, Serial
         return it;
     }
 
+    
     @Override
     public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new MyIterator();  
+    }
+    
+
+    private class MyIterator implements Iterator<E>{
+        private int contador=0;
+        private boolean removible=false;
+        
+        @Override
+        public boolean hasNext() {
+            return contador<size();
+        }
+
+        @Override
+        public E next() {
+            if(contador==size()) throw new NoSuchElementException("No next element");
+            removible=true;
+            return get(contador++);
+        }
+        @Override
+        public void remove() {
+            if(!removible) throw new IllegalStateException("Nothing to remove"); 
+            CircularDoublyLinkedList.this.remove(contador-1);
+            contador--;
+            removible=false;
+        }
+    
     }
 
     @Override
@@ -390,7 +418,7 @@ public class CircularDoublyLinkedList<E> implements List<E>, Iterable<E>, Serial
     }
 
     public ListIterator listIterator() {
-        ListIterator<E> it = new ListIterator<E>() {
+            ListIterator<E> it = new ListIterator<E>() {
             private NodoFoto<E> nodoFirst = new NodoFoto<E>(ﬁrst());
             private int control = -1;
 

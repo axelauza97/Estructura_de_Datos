@@ -352,7 +352,7 @@ public class FrmCrearFoto extends javax.swing.JFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
-        
+        personas=new SimpleLinkedList<>();
         for(int x: ltPersonas.getSelectedIndices()){
             personas.addLast((Persona) modeloPersonas.get(x));
         }

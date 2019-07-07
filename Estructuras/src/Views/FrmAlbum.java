@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import javax.accessibility.AccessibleRole;
@@ -52,8 +53,10 @@ public class FrmAlbum extends javax.swing.JFrame {
         if(album.contains(albumNew)){
             int pos=album.indexOf(albumNew);
             album.set(pos, albumNew);
+            System.out.println("EXISTE");
         }else{
             album.addLast(albumNew);
+            System.out.println("CREA");
         }
         archivo.saveAlbum(album);
         loadAlbums();
@@ -487,12 +490,13 @@ public class FrmAlbum extends javax.swing.JFrame {
             txtDescripAl.setText(albumA.getDescripcion());
             lblAlbum.setText(albumA.toString());
             paneFotos.removeAll();
-            paneFotos.setLayout(new GridLayout(0, 4,5,10));
+            paneFotos.setLayout(new GridLayout(0,2,5,10));
             //Numero de Imagenes guardados
             if(!albumA.getFotos().isEmpty()){
                 CircularDoublyLinkedList<Foto> fotos=albumActual.getFotos();
                 System.out.println(fotos.size());
-                ListIterator li= fotos.listIterator();
+                System.out.println(fotos);
+                Iterator<Foto> li= fotos.iterator();
                 while(li.hasNext()){
                     Foto foto = (Foto) li.next();
                     JButton boton = new JButton(foto.toString());
@@ -509,7 +513,8 @@ public class FrmAlbum extends javax.swing.JFrame {
                         }
                     });
                     paneFotos.add(boton);
-            }}
+                }
+            }
             paneFotos.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
             }
     }
