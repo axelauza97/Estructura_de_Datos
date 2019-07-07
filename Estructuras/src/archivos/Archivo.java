@@ -35,8 +35,8 @@ public class Archivo {
     public Archivo(){
         this.crearCarpetas();
     }
-    public ArrayList readPersonas() {
-        ArrayList<Persona> personas = new ArrayList();
+    public SimpleLinkedList<Persona> readPersonas() {
+        SimpleLinkedList<Persona> personas = new SimpleLinkedList();
         String fileName="src\\Resources\\personas.txt";
         try{
         File f = new File(fileName);
@@ -47,7 +47,8 @@ public class Archivo {
             while((linea=br.readLine())!=null){
                 String[] per = linea.split("%");
                 Persona p = new Persona(per[0],per[1]);
-                personas.add(p);
+                
+                personas.addLast(p);
             }
         }
         }catch(Exception e){

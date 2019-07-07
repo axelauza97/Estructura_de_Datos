@@ -2,6 +2,8 @@ package Views;
 
 
 import archivos.Archivo;
+import archivos.DoubleLinkedList;
+import archivos.SimpleLinkedList;
 import entidades.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -18,7 +20,7 @@ import javax.swing.DefaultListModel;
  */
 public class FrmPersonas extends javax.swing.JFrame {
     Archivo a = new Archivo();
-    ArrayList<Persona> personas = a.readPersonas();
+    SimpleLinkedList<Persona> personas = a.readPersonas();
     DefaultListModel modelo = new DefaultListModel();
     /**
      * Creates new form FrmPersonas
@@ -165,9 +167,11 @@ public class FrmPersonas extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-        personas.clear();
         for (int x=0; x< modelo.size();x++)
-            personas.add((Persona) modelo.getElementAt(x));
+            personas.remove(x);
+       
+        for (int x=0; x< modelo.size();x++)
+            personas.addLast((Persona) modelo.getElementAt(x));
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
