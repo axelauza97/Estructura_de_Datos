@@ -463,7 +463,6 @@ public class FrmAlbum extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent evt) {
             //Nombre del album
             albumActual=albumA;
-            System.out.println(albumActual);
             txtDescripAl.setText(albumA.getDescripcion());
             lblAlbum.setText(albumA.toString());
             paneFotos.removeAll();
@@ -471,6 +470,7 @@ public class FrmAlbum extends javax.swing.JFrame {
             //Numero de Imagenes guardados
             if(!albumA.getFotos().isEmpty()){
                 CircularDoublyLinkedList<Foto> fotos=albumActual.getFotos();
+                System.out.println(fotos.size());
                 ListIterator li= fotos.listIterator();
                 while(li.hasNext()){
                     Foto foto = (Foto) li.next();

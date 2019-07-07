@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Model.TDAFotos.CircularDoublyLinkedList;
 import entidades.Album;
 
 /**
@@ -114,6 +115,7 @@ public class FrmCrearAlbum extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         album=new Album(lblNombre.getText().toString(),lblDescripcion.getText().toString());
+        album.setFotos(new CircularDoublyLinkedList());
         FrmAlbum frm = new FrmAlbum(album);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);

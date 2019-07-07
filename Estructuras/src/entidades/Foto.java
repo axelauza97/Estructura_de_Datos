@@ -115,6 +115,11 @@ public class Foto implements Serializable{
         this.camara = camara;
     }
 
+    @Override
+    public String toString() {
+        return "Foto{" + "path=" + path + ", descripcion=" + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + ", comentarios=" + comentarios + ", camara=" + camara + '}';
+    }
+
     
     
 }
