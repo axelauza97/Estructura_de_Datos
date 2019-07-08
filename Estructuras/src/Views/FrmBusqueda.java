@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author Tonny
  */
-public class BusquedaSimple extends javax.swing.JPanel {
+public class FrmBusqueda extends javax.swing.JPanel {
     SimpleLinkedList<Foto> fotos = new SimpleLinkedList();
     public Archivo a=FrmHome.archivo;
     HashSet<Foto> pics =new HashSet();
@@ -34,7 +34,7 @@ public class BusquedaSimple extends javax.swing.JPanel {
     /**
      * Creates new form BusquedaCompleja
      */
-    public BusquedaSimple() {
+    public FrmBusqueda() {
         
        
         initComponents();
@@ -186,7 +186,7 @@ public class BusquedaSimple extends javax.swing.JPanel {
                         
                         
                     } catch (ParseException ex) {
-                        Logger.getLogger(BusquedaSimple.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(FrmBusqueda.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     
