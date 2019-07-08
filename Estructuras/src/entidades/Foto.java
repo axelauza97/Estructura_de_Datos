@@ -25,10 +25,10 @@ public class Foto implements Serializable{
     private String comentarios;
     private Camara camara;
 
-    public Foto(String path, String descripcion, String ubicacion, String fecha, SimpleLinkedList<Persona> personas, SimpleLinkedList<String> reacciones, SimpleLinkedList<String> keywords, String comentarios, Camara camara) {
+    public Foto(String path, String descripcion, Ubicacion ubicacion, String fecha, SimpleLinkedList<Persona> personas, SimpleLinkedList<String> reacciones, SimpleLinkedList<String> keywords, String comentarios, Camara camara) {
         this.path = path;
         this.descripcion = descripcion;
-        this.ubicacion.lugar =ubicacion;
+        this.ubicacion =ubicacion;
         this.fecha = fecha;
         this.personas = personas;
         this.reacciones = reacciones;
@@ -116,7 +116,7 @@ public class Foto implements Serializable{
 
     @Override
     public String toString() {
-        return ubicacion.lugar + "{" + fecha + "}["+ camara+ "]";
+        return ubicacion + "{" + fecha + "}["+ camara+ "]";
     }
 
     public Ubicacion getUbicacion() {

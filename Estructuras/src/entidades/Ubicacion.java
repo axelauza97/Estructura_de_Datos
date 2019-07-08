@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author User
  */
 public class Ubicacion implements Serializable{
-    String pais, ciudad, lugar;
+    private String pais, ciudad, lugar;
     
     public Ubicacion(String pais){
         this.pais = pais;
@@ -47,6 +47,6 @@ public class Ubicacion implements Serializable{
     }
     @Override
     public String toString(){
-        return "País: " + pais + "Ciudad: " + ciudad + "Lugar: " + lugar; 
+        return "{" + pais + "-" + ciudad + "}" + lugar; 
     }
     }

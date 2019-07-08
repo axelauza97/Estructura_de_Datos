@@ -360,8 +360,21 @@ public class FrmCrearFoto extends javax.swing.JFrame {
         for(int x: ltReaccion.getSelectedIndices()){
             reaccion.addLast((String) modeloReaccion.get(x));
         }
+        
+        String ubicacionPar=txtLugar.getText().toString();
+        SimpleLinkedList<String> tmpUbi=new SimpleLinkedList<>();
+        for(String u : ubicacionPar.split("/")){
+            if(u==null){
+                tmpUbi.addLast("");
+                System.out.println("hereee");
+            }else{
+                tmpUbi.addLast(u);
+            }
+        }
+        Ubicacion ubicacion=new Ubicacion(tmpUbi.get(0),tmpUbi.get(1),tmpUbi.get(2));
+        
         Foto foto=new Foto(lblPath.getText().toString(),txtDescripcion.getText().toString(),
-                txtLugar.getText(),txtFecha.getText().toString(),personas,reaccion,keywords,txtComentario.getText().toString(), (Camara) cbCamara.getSelectedItem());
+                ubicacion,txtFecha.getText().toString(),personas,reaccion,keywords,txtComentario.getText().toString(), (Camara) cbCamara.getSelectedItem());
         CircularDoublyLinkedList ltCircular;
         if(album.getFotos().isEmpty()){
             ltCircular=new CircularDoublyLinkedList();

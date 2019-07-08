@@ -71,7 +71,8 @@ public class Persona implements Serializable,Comparable {
             return -1;
     }
        
-    Comparator<Persona> cmppersona = new Comparator<Persona>() {
+    
+    /*Comparator<Persona> cmppersona = new Comparator<Persona>() {
             @Override
             public int compare(Persona o1, Persona o2) {
                 if(o1.getNombres().equals(o2.getApellidos())&&o1.getNombres().equals(o2.getNombres())){
@@ -79,7 +80,7 @@ public class Persona implements Serializable,Comparable {
                 }
                 return -1;
             }
-        };
+        };*/
     
     public HashSet<Foto> Busqueda(SimpleLinkedList<Foto> fo, Comparator cmp, Persona p){
         HashSet<Foto> f=new HashSet();

@@ -137,7 +137,6 @@ public class FrmHome extends javax.swing.JFrame {
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
         FrmBusqueda bs = new FrmBusqueda();
-        bs.setLocation(null);
         bs.setVisible(true);
         this.setVisible(false);
        

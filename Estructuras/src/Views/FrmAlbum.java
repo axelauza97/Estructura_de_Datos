@@ -453,8 +453,10 @@ public class FrmAlbum extends javax.swing.JFrame {
         }else{
             albumActual.getFotos().remove(fotoActual);
             archivo.saveAlbum(album);
-            paneNombres.removeAll();
-            loadAlbums();
+            FrmAlbum frm = new FrmAlbum();
+            frm.setLocationRelativeTo(null);
+            frm.setVisible(true);
+            this.setVisible(false);
         }
         
     }//GEN-LAST:event_btnEliminarFotoActionPerformed
@@ -550,7 +552,7 @@ public class FrmAlbum extends javax.swing.JFrame {
         this.txtDescripcion.setText(foto.getDescripcion());
         this.txtPath.setText(foto.getPath());
         this.lblFecha.setText(foto.getFecha());
-        this.lblLugar.setText(foto.getUbicacion().getLugar());
+        this.lblLugar.setText(foto.getUbicacion().toString());
         cbPersonas.removeAllItems();
         for(Persona persona:foto.getPersonas()){
             this.cbPersonas.addItem(persona);

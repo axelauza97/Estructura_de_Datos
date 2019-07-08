@@ -38,7 +38,7 @@ public class FrmBusqueda extends javax.swing.JPanel {
         
        
         initComponents();
-         CircularDoublyLinkedList f;
+        CircularDoublyLinkedList f;
         albums = a.readAlbum();
         Iterator it = albums.iterator();
         while(it.hasNext()){
