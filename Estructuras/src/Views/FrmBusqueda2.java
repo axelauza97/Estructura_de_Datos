@@ -151,6 +151,7 @@ public class FrmBusqueda2 extends javax.swing.JFrame {
                 Persona person = new Persona(a[0],a[1]);
 
                 pics = person.Busqueda(fotos, cmppersona, person);
+                System.out.println(pics);
             }
             else if(!(fecha.getText().length()==0)){
                 if(fecha.getText().contains(" entre ")){

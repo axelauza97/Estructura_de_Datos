@@ -124,7 +124,9 @@ public class FrmVerFoto extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
+
         FrmAlbum frm = new FrmAlbum(albumActual);
+        
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         this.setVisible(false);
@@ -137,7 +139,9 @@ public class FrmVerFoto extends javax.swing.JFrame {
             CircularDoublyLinkedList<Foto> fotos = albumActual.getFotos();
             Iterator<Foto> li = fotos.iterator();
             Foto foto = (Foto) li.next();
-            
+
+            System.out.println(foto.getPath());
+
             ImageIcon imageIcon = new ImageIcon(foto.getPath()); // load the image to a imageIcon
             Image image = imageIcon.getImage(); // transform it 
             Image newimg = image.getScaledInstance(700, 500, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
