@@ -42,6 +42,10 @@ public class Foto implements Serializable{
         this.ubicacion =ubicacion ;
         this.fecha = fecha;
     }
+
+    public Foto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     public String getPath() {

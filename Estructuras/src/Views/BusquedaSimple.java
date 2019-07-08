@@ -5,17 +5,49 @@
  */
 package Views;
 
+import Model.TDAFotos.CircularDoublyLinkedList;
+import archivos.Archivo;
+import archivos.SimpleLinkedList;
+import entidades.Album;
+import entidades.Foto;
+import entidades.Persona;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Tonny
  */
 public class BusquedaSimple extends javax.swing.JPanel {
+    SimpleLinkedList<Foto> fotos = new SimpleLinkedList();
+    public Archivo a=FrmHome.archivo;
+    HashSet<Foto> pics =new HashSet();
+    SimpleLinkedList<Album> albums = new SimpleLinkedList();
     
     /**
      * Creates new form BusquedaCompleja
      */
     public BusquedaSimple() {
+        
+       
         initComponents();
+         CircularDoublyLinkedList f;
+        albums = a.readAlbum();
+        Iterator it = albums.iterator();
+        while(it.hasNext()){
+            f=((Album)(it.next())).getFotos();
+            Iterator i = f.iterator();
+            while(i.hasNext()){
+                fotos.addLast((Foto)i.next());
+            }
+        }
     }
 
     /**
@@ -105,7 +137,74 @@ public class BusquedaSimple extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
+        
+// TODO add your handling code here:
+        Comparator<Persona> cmppersona = new Comparator<Persona>() {
+            @Override
+            public int compare(Persona o1, Persona o2) {
+                if(o1.getNombres().equals(o2.getApellidos())&&o1.getNombres().equals(o2.getNombres())){
+                    return 0;
+                }
+                return -1;
+            }
+        };
+        
+        if(fecha.getText().equals(" ")&& lugar.getText().equals(" ") && personas.getText().equals(" "))
+            JOptionPane.showMessageDialog(this, "¡Ingrese un parametro de busqueda por favor!", "Error", JOptionPane.ERROR_MESSAGE);
+        else{
+            if(!(personas.getText().length()==0)){
+                String [] a = personas.getText().split(" ");
+                Persona person = new Persona(a[0],a[1]);
+
+                pics = person.Busqueda(fotos, cmppersona, person);
+                }
+            else if(!(fecha.getText().length()==0)){
+                if(fecha.getText().contains(" entre ")){
+                    try {
+                        String fechas[] = fecha.getText().split("-");
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+                        
+                        Date date1 = sdf.parse(fechas[0]);
+                        
+                        
+                            Date date2 = sdf.parse(fechas[1]);
+                            
+                        
+                        
+                        Iterator itd = fotos.iterator();
+                        while(itd.hasNext()){
+                                Foto fot = ((Foto)itd.next());
+                                Date date = sdf.parse(fot.getFecha());
+                                if(date.compareTo(date1)==0||date.compareTo(date2)==0||(date.after(date1)&&date.before(date2))){
+                                    pics.add(fot);
+                                    
+                                }
+                            
+                            
+                        }
+                        
+                        
+                    } catch (ParseException ex) {
+                        Logger.getLogger(BusquedaSimple.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    
+                        String date = fecha.getText();
+                        Iterator itd = fotos.iterator();
+                        while(itd.hasNext()){
+                            Foto fot = ((Foto)itd.next());
+                            if(fot.getFecha().equals(date)){
+                                pics.add(fot);
+                            }
+                        }
+                        
+                    
+                }
+            }
+            else if(lugar.getText().length()!=0){
+                
+            }
+        }
     }//GEN-LAST:event_buscarActionPerformed
 
 
