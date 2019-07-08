@@ -149,6 +149,7 @@ public class BusquedaSimple extends javax.swing.JPanel {
             }
         };
         
+        
         if(fecha.getText().equals(" ")&& lugar.getText().equals(" ") && personas.getText().equals(" "))
             JOptionPane.showMessageDialog(this, "¡Ingrese un parametro de busqueda por favor!", "Error", JOptionPane.ERROR_MESSAGE);
         else{
@@ -202,7 +203,34 @@ public class BusquedaSimple extends javax.swing.JPanel {
                 }
             }
             else if(lugar.getText().length()!=0){
-                
+               String a[] = lugar.getText().split(",");
+               if(a.length==1){
+                   Iterator itl = fotos.iterator();
+                   while(itl.hasNext()){
+                       Foto fot = (Foto)itl.next();
+                       if(fot.getUbicacion().toString().contains(a[0])){
+                           pics.add(fot);
+                       }
+                   }
+               }
+               if(a.length==2){
+                   Iterator itl = fotos.iterator();
+                   while(itl.hasNext()){
+                       Foto fot = (Foto)itl.next();
+                       if(fot.getUbicacion().toString().contains(a[0])&&fot.getUbicacion().toString().contains(a[1])){
+                           pics.add(fot);
+                       }
+                   }
+               }
+               if(a.length==3){
+                   Iterator itl = fotos.iterator();
+                   while(itl.hasNext()){
+                       Foto fot = (Foto)itl.next();
+                       if(fot.getUbicacion().toString().contains(a[0])&&fot.getUbicacion().toString().contains(a[1])&&fot.getUbicacion().toString().contains(a[2])){
+                           pics.add(fot);
+                       }
+                   }
+               }
             }
         }
     }//GEN-LAST:event_buscarActionPerformed
